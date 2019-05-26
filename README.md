@@ -56,13 +56,13 @@ A Blazor WASM app that shows the state of the employees and moves them from ther
 
 **12.** Create an [Azure SignalR Service](https://azure.microsoft.com/en-us/services/signalr-service/) and put the connectionstring into `AzureSignalRConnectionString` in local.settings.json in WhosHere.Functions
 
-**13.** Create an [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)
+**13.** Create an [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal) and make sure the blob container is publically readable
 
 **14.** Put account name and the container name into the `WhosHere.Web` Meeting.Razor file in this string `$"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"` (line 51)
 
 **15.** Put the accountkey into `StorageAccountKey` in `secrets.json`
 
-**16.** Put the url (https://STORAGEACCOUNTNAME.blob.core.windows.net/) into `StorageAccountUrl` in `secrets.json`
+**16.** Put the url (https://STORAGEACCOUNTNAME.blob.core.windows.net/CONTAINERNAME/) into `StorageAccountUrl` in `secrets.json`
 
 **17.** Put the container name in `secrets.json` under `ContainerName`
 
