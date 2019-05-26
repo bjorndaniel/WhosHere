@@ -27,25 +27,43 @@ Azure functions handling the SignalR service and images to be analyzed
 A Xamarin Forms app to capture photos and send them to the Azure function to be analyzed
 * **WhosHere.Wpf -**
 A .NET Core Wpf application used to connect to the Microsoft graph, fetch employee images and send them to Azure Blob Storage and the face api. Also has a tab for uploading test images to be analyzed.
+* **<span>WhosHere</span>.Web -**
+A Blazor WASM app that shows the state of the employees and moves them from there to here as the analyze results come in over SignalR.
 
 ## How to build and run
 
 **1.** Clone the project
+
 **2.** Run ``dotnet restore``
+
 **3.** cd into WhosHere.Wpf
+
 **4.** Run `dotnet user-secrets` init This will create a `<UserSecretsId>` tag in the .csproj-file containing a GUID.
+
 **5.** Run `dotnet user-secrets set "ConfigValues:Tenant" "common"` This will create a secrets.json file in your home folder `C:\Users\YOUR_USERNAME\AppData\Roaming\Microsoft\UserSecrets\GUID_GENERATED_BY_THE_CLI`
+
 **6.** Open the secrets.json file and copy all values from appsettings.json so that they can be used to set the various keys needed later.
+
 **7.** Copy the `<UserSecretsId>` to the WhosHere.Functions.csproj file
+
 **8.** Open the [Azure Portal](https://portal.azure.com)
+
 **9.** Create a new [App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and put the Application ID into ClientID in secrets.json **Make sure you don't put any keys into appsettings.json**
+
 **10.** Create a [Face Cognitive Service](https://azure.microsoft.com/en-us/try/cognitive-services/) and put the key into FaceApiKey
+
 **11.** Create an [Azure SignalR Service](https://azure.microsoft.com/en-us/services/signalr-service/) and put the connectionstring into `AzureSignalRConnectionString` in local.settings.json in WhosHere.Functions
+
 **12.** Create an [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)
+
 **13.** Put account name and the container name into the `WhosHere.Web` Meeting.Razor file in this string `$"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"` (line 51)
+
 **14.** Put the container name in `appsettings.json` under `ContainerName`
+
 **15.** In the App.xaml.cs file in `WhosHere.Mobile` set your computers ip-address followed by 7070 in the `FunctionUrl` property
+
 **16.** You should now be ready to run the application 🤞
+
 
 ## Using the applications
 
