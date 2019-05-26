@@ -58,11 +58,17 @@ A Blazor WASM app that shows the state of the employees and moves them from ther
 
 **13.** Put account name and the container name into the `WhosHere.Web` Meeting.Razor file in this string `$"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"` (line 51)
 
-**14.** Put the container name in `appsettings.json` under `ContainerName`
+**14.** Put the accountkey into `StorageAccountKey` in `secrets.json`
 
-**15.** In the App.xaml.cs file in `WhosHere.Mobile` set your computers ip-address followed by 7070 in the `FunctionUrl` property
+**15.** Put the url (https://STORAGEACCOUNTNAME.blob.core.windows.net/) into `StorageAccountUrl` in `secrets.json`
 
-**16.** You should now be ready to run the application 🤞
+**16.** Put the container name in `secrets.json` under `ContainerName`
+
+**17.** Put the connection string in `secrets.json` under `StorageConnectionString`
+
+**18.** In the App.xaml.cs file in `WhosHere.Mobile` set your computers ip-address followed by 7070 in the `FunctionUrl` property
+
+**19.** You should now be ready to run the application 🤞
 
 
 ## Using the applications
