@@ -14,7 +14,7 @@ namespace WhosHere.Common
     {
         private const int CallLimitPerSecond = 10;
         private static Queue<DateTime> TimeStampQueue = new Queue<DateTime>(CallLimitPerSecond);
-        private const string PersonGroupId = "EmployeeGroup";
+        private const string PersonGroupId = "employeegroup";
         private const string FaceUrl = "https://westeurope.api.cognitive.microsoft.com";
 
         public static async Task<bool> AddUserToFaceApiAsync(WHUser user, ConfigValues values)
