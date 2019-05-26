@@ -99,7 +99,7 @@ Once you have images it is time to start the Azure functions to be able to use t
 
 This app has a Meetingpage with a list of people and there status.
 
-* In the `WhosHere.Web` folder execute `dotnet run`
+* In the `WhosHere.Web` folder execute `dotnet run --urls http://0.0.0.0:5000`
 * The app should start on localhost:5000
 * Open a browser to this address and click on Meeting
 * You should see the following:
