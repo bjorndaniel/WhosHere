@@ -50,7 +50,7 @@ A Blazor WASM app that shows the state of the employees and moves them from ther
 
 **9.** Create a new [App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and put the Application ID into ClientID in secrets.json **Make sure you don't put any keys into appsettings.json**
 
-**10.** Make sure the app has permissions User.Read.All and User.Read in the Microsoft Graph
+**10.** Make sure the app has permissions User.Read.All and User.Read in the Microsoft Graph, ID tokens is checked, the redirect uri is https://login.microsoftonline.com/common/oauth2/nativeclient and that Supported account types are any
 
 **11.** Create a [Face Cognitive Service](https://azure.microsoft.com/en-us/try/cognitive-services/) and put the key into FaceApiKey
 
