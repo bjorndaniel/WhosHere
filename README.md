@@ -50,25 +50,27 @@ A Blazor WASM app that shows the state of the employees and moves them from ther
 
 **9.** Create a new [App Registration](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal) and put the Application ID into ClientID in secrets.json **Make sure you don't put any keys into appsettings.json**
 
-**10.** Create a [Face Cognitive Service](https://azure.microsoft.com/en-us/try/cognitive-services/) and put the key into FaceApiKey
+**10.** Make sure the app has permissions User.Read.All and User.Read in the Microsoft Graph
 
-**11.** Create an [Azure SignalR Service](https://azure.microsoft.com/en-us/services/signalr-service/) and put the connectionstring into `AzureSignalRConnectionString` in local.settings.json in WhosHere.Functions
+**11.** Create a [Face Cognitive Service](https://azure.microsoft.com/en-us/try/cognitive-services/) and put the key into FaceApiKey
 
-**12.** Create an [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)
+**12.** Create an [Azure SignalR Service](https://azure.microsoft.com/en-us/services/signalr-service/) and put the connectionstring into `AzureSignalRConnectionString` in local.settings.json in WhosHere.Functions
 
-**13.** Put account name and the container name into the `WhosHere.Web` Meeting.Razor file in this string `$"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"` (line 51)
+**13.** Create an [Azure Blob Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal)
 
-**14.** Put the accountkey into `StorageAccountKey` in `secrets.json`
+**14.** Put account name and the container name into the `WhosHere.Web` Meeting.Razor file in this string `$"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"` (line 51)
 
-**15.** Put the url (https://STORAGEACCOUNTNAME.blob.core.windows.net/) into `StorageAccountUrl` in `secrets.json`
+**15.** Put the accountkey into `StorageAccountKey` in `secrets.json`
 
-**16.** Put the container name in `secrets.json` under `ContainerName`
+**16.** Put the url (https://STORAGEACCOUNTNAME.blob.core.windows.net/) into `StorageAccountUrl` in `secrets.json`
 
-**17.** Put the connection string in `secrets.json` under `StorageConnectionString`
+**17.** Put the container name in `secrets.json` under `ContainerName`
 
-**18.** In the App.xaml.cs file in `WhosHere.Mobile` set your computers ip-address followed by 7070 in the `FunctionUrl` property
+**18.** Put the connection string in `secrets.json` under `StorageConnectionString`
 
-**19.** You should now be ready to run the application 🤞
+**19.** In the App.xaml.cs file in `WhosHere.Mobile` set your computers ip-address followed by 7070 in the `FunctionUrl` property
+
+**20.** You should now be ready to run the application 🤞
 
 
 ## Using the applications
