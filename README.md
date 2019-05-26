@@ -34,17 +34,17 @@ A Blazor WASM app that shows the state of the employees and moves them from ther
 
 **1.** Clone the project
 
-**2.** Run ``dotnet restore``
+**2.** Run `dotnet restore`
 
-**3.** cd into WhosHere.Wpf
+**3.** cd into `WhosHere.Wpf`
 
-**4.** Run `dotnet user-secrets` init This will create a `<UserSecretsId>` tag in the .csproj-file containing a GUID.
+**4.** Run `dotnet user-secrets init` This will create a `<UserSecretsId>` tag in the .csproj-file containing a GUID.
 
 **5.** Run `dotnet user-secrets set "ConfigValues:Tenant" "common"` This will create a secrets.json file in your home folder `C:\Users\YOUR_USERNAME\AppData\Roaming\Microsoft\UserSecrets\GUID_GENERATED_BY_THE_CLI`
 
 **6.** Open the secrets.json file and copy all values from appsettings.json so that they can be used to set the various keys needed later.
 
-**7.** Copy the `<UserSecretsId>` to the WhosHere.Functions.csproj file
+**7.** Copy the `<UserSecretsId>` to the `WhosHere.Functions.csproj` file
 
 **8.** Open the [Azure Portal](https://portal.azure.com)
 
