@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WhosHere.Mobile.Views.ImagePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Visual="Material">
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="{Binding CameraImage}" />
+            <Button
+                Grid.Row="1"
+                Command="{Binding TakePhotoCommand}"
+                Text="Take photo"
+                VerticalOptions="End" />
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>

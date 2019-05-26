@@ -1,0 +1,141 @@
+﻿<Window
+    x:Class="WhosHere.Wpf.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WhosHere.Wpf"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="MainWindow"
+    Width="2560"
+    Height="1080"
+    MinWidth="1920"
+    MinHeight="1080"
+    FontSize="32"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
+    <Grid>
+        <TabControl>
+            <TabItem Header="GraphConnector">
+                <Grid Margin="15,0,15,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        HorizontalAlignment="Center"
+                        Text="Upload profile photos from Microsoft graph" />
+                    <ListView
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        MinHeight="860"
+                        VerticalAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        ItemsSource="{Binding Avatars}"
+                        ScrollViewer.CanContentScroll="True"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="20,5,20,5" Orientation="Horizontal">
+                                    <Ellipse Width="200" Height="200">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding Image}" Stretch="UniformToFill" />
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock
+                                        Margin="30,0,0,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="48"
+                                        Text="{Binding Mail}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+                    <Button
+                        Grid.Row="1"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding UploadCommand}">
+                        Start uploading photos
+                    </Button>
+                    <Button
+                        Grid.Row="2"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding TrainCommand}">
+                        Train model
+                    </Button>
+                    <TextBlock Grid.Row="3" Text="{Binding StatusText}" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Image tester">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="65" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="150" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Row="0"
+                            HorizontalAlignment="Center"
+                            Text="Select an image to upload" />
+                        <TextBlock
+                            Grid.Row="1"
+                            FontSize="48"
+                            Text="{Binding SelectedImagename}" />
+                        <Button Grid.Row="2" Click="Button_Click">Choose image</Button>
+
+                        <Image
+                            Grid.Row="3"
+                            Width="1200"
+                            Height="900"
+                            Source="{Binding SelectedImage}"
+                            Stretch="UniformToFill" />
+                        <Button
+                            Grid.Row="4"
+                            VerticalAlignment="Bottom"
+                            Command="{Binding AnalyzeCommand}">
+                            Analyze image
+                        </Button>
+                        <TextBlock
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Text="Identified people" />
+                        <ScrollViewer
+                            Grid.Row="1"
+                            Grid.RowSpan="5"
+                            Grid.Column="1">
+                            <ListView ItemsSource="{Binding IdentifiedPersons}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding UserData}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
+                    </Grid>
+                    <TextBlock Grid.Row="1" Text="{Binding ImageStatus}" />
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

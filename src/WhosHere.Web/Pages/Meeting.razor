@@ -1,0 +1,83 @@
+@page "/meeting"
+@inject IJSRuntime JSRuntime
+@inject HttpClient HttpClient
+
+<div class="row">
+ <div class="col text-center">
+     <h2>Whos here?</h2>
+ </div>
+</div>
+@foreach (var e in _employees)
+{
+    <div class="row card card-row">
+        <div class="col">
+            <div class="row">
+                <div class="col-2 align-self-start">
+                    Here
+                </div>
+                <div class="col-8 text-center">
+                    <strong>@e.Mail</strong>
+                </div>
+                <div class="col-2 align-self-end text-right">
+                    There
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="float">
+                        <img class="@e.Class"
+                            src="@e.ImageUrl"
+                            alt="@e.Mail" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@functions{
+
+    HubConnection _connection;
+    List<Employee> _employees = new List<Employee>();
+
+     protected override async Task OnInitAsync()
+     {
+        var result = await HttpClient.GetJsonAsync<List<string>>("http://localhost:7071/api/employees");   
+        _employees = result.Select(_ => 
+            new Employee
+            {
+                Mail = _,
+                ImageUrl = $"https://YOURSTORAGEACCOUNT.blob.core.windows.net/YOUR_BLOB_CONTAINER/{_}"
+            }).ToList();
+     }
+
+     protected override async Task OnAfterRenderAsync()
+    {
+        Console.WriteLine($"Connecting to http://localhost:7071/api");
+        _connection = new HubConnectionBuilder(JSRuntime).WithUrl("http://localhost:7071/api").Build();
+        _connection.On<AnalyzeMessage>("ImageAnalyzed", async (m) => await this.OnBroadcastMessage(m));
+        await _connection.StartAsync();
+    }
+
+    async Task OnBroadcastMessage(AnalyzeMessage message)
+    {
+        Console.WriteLine("Message received");
+        Console.WriteLine(JsonConvert.SerializeObject(message));
+        if(message?.Result?.NrFound > 0)
+        {
+            foreach(var u in message?.Result?.Users)
+            {
+                var e = _employees.FirstOrDefault(_ => _.Mail.Equals(u, StringComparison.OrdinalIgnoreCase));
+                if(e != null)
+                {
+                    _employees.Remove(e);
+                    _employees.Insert(0, e);
+                    e.IsSelected = true;
+                    StateHasChanged();
+                    await Task.Delay(250);
+                }
+            }
+        }
+    }
+}
